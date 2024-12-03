@@ -12,6 +12,8 @@ func main() {
 	switch *part {
 	case 1:
 		part1()
+	case 2:
+		part2()
 	default:
 		fmt.Printf("part %d does not exist", *part)
 	}
