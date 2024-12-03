@@ -9,9 +9,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func part2() {
-	fmt.Println("day 1 part 2")
-
+func part2(day int, file string) {
 	left := make([]int, 1000)
 	right := make(map[int]int)
 
@@ -39,5 +37,5 @@ func part2() {
 		fmt.Printf("Total: %d\n", sim)
 	}
 
-	utils.ReadInput(filepath.Join("day1", "input.txt"), linefn, endfn)
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
 }

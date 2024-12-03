@@ -42,9 +42,7 @@ func createReport(raw []string) report {
 	return report
 }
 
-func part1() {
-	fmt.Println("day 2 part 1")
-
+func part1(day int, file string) {
 	safeReports := 0
 
 	linefn := func(line string) {
@@ -59,5 +57,5 @@ func part1() {
 		fmt.Printf("Total safe reports: %d\n", safeReports)
 	}
 
-	utils.ReadInput(filepath.Join("day2", "input.txt"), linefn, endfn)
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
 }

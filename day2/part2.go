@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
@@ -21,9 +22,7 @@ func (r report) isSafeWithDampener() bool {
 	return false
 }
 
-func part2() {
-	fmt.Println("day 2 part 2")
-
+func part2(day int, file string) {
 	safeReports := 0
 
 	linefn := func(line string) {
@@ -38,7 +37,7 @@ func part2() {
 		fmt.Printf("Total safe reports: %d\n", safeReports)
 	}
 
-	utils.ReadInput(filepath.Join("day2", "input.txt"), linefn, endfn)
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
 }
 
 func newReportWithoutIndex(r report, index int) report {

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-var day = 1
+var day = 0
 
 func main() {
 	part := flag.Int("p", 1, "which part of the given day to run")
@@ -15,10 +15,12 @@ func main() {
 	switch *part {
 	case 1:
 		fmt.Printf("running day %d part %d with file %s\n", day, *part, *file)
-		part1(day, *file)
+		fmt.Println("not yet implemented")
+		//part1(day, *file)
 	case 2:
 		fmt.Printf("running day %d part %d with file %s\n", day, *part, *file)
-		part2(day, *file)
+		fmt.Println("not yet implemented")
+		//part2(day, *file)
 	default:
 		fmt.Printf("part %d does not exist\n", *part)
 	}
