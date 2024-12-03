@@ -33,10 +33,7 @@ func (r report) isSafe() bool {
 func createReport(raw []string) report {
 	report := make([]int, len(raw))
 	for ind, s := range raw {
-		num, err := strconv.Atoi(s)
-		if err != nil {
-			panic(err)
-		}
+		num := utils.MustAtoi(s)
 		report[ind] = num
 	}
 	return report

@@ -18,14 +18,7 @@ func part1(day int, file string) {
 	linefn := func(line string) {
 		entries := strings.Fields(line)
 		l, r := entries[0], entries[1]
-		lVal, err := strconv.Atoi(l)
-		if err != nil {
-			panic(err)
-		}
-		rVal, err := strconv.Atoi(r)
-		if err != nil {
-			panic(err)
-		}
+		lVal, rVal := utils.MustAtoi(l), utils.MustAtoi(r)
 		left = append(left, lVal)
 		right = append(right, rVal)
 	}

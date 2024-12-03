@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"os"
+	"strconv"
 )
 
 type parseLine func(string)
@@ -35,4 +36,12 @@ func Abs(v int) int {
 		return v
 	}
 	return v * -1
+}
+
+func MustAtoi(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		panic(err)
+	}
+	return i
 }
