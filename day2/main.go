@@ -11,7 +11,7 @@ func main() {
 
 	switch *part {
 	case 1:
-		fmt.Println("not yet implemented")
+		part1()
 	case 2:
 		fmt.Println("not yet implemented")
 	default:

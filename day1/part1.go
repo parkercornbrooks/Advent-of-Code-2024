@@ -36,17 +36,10 @@ func part1() {
 		slices.Sort(left)
 		slices.Sort(right)
 		for i := 0; i < len(left); i++ {
-			diff += abs(left[i] - right[i])
+			diff += utils.Abs(left[i] - right[i])
 		}
 		fmt.Printf("Total: %d\n", diff)
 	}
 
 	utils.ReadInput(filepath.Join("day1", "input.txt"), linefn, endfn)
-}
-
-func abs(v int) int {
-	if v >= 0 {
-		return v
-	}
-	return v * -1
 }

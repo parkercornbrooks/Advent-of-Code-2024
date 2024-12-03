@@ -29,3 +29,10 @@ func ReadInput(filename string, linefn parseLine, endfn endRead) {
 	}
 	endfn()
 }
+
+func Abs(v int) int {
+	if v >= 0 {
+		return v
+	}
+	return v * -1
+}
