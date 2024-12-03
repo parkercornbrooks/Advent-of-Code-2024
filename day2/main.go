@@ -13,7 +13,7 @@ func main() {
 	case 1:
 		part1()
 	case 2:
-		fmt.Println("not yet implemented")
+		part2()
 	default:
 		fmt.Printf("part %d does not exist", *part)
 	}
