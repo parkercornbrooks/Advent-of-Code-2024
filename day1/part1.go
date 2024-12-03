@@ -41,7 +41,7 @@ func part1() {
 		fmt.Printf("Total: %d\n", diff)
 	}
 
-	utils.ReadFile(filepath.Join("day1", "input.txt"), linefn, endfn)
+	utils.ReadInput(filepath.Join("day1", "input.txt"), linefn, endfn)
 }
 
 func abs(v int) int {

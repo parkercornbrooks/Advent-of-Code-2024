@@ -39,5 +39,5 @@ func part2() {
 		fmt.Printf("Total: %d\n", sim)
 	}
 
-	utils.ReadFile(filepath.Join("day1", "input.txt"), linefn, endfn)
+	utils.ReadInput(filepath.Join("day1", "input.txt"), linefn, endfn)
 }

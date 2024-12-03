@@ -9,7 +9,7 @@ type parseLine func(string)
 
 type endRead func()
 
-func ReadFile(filename string, linefn parseLine, endfn endRead) {
+func ReadInput(filename string, linefn parseLine, endfn endRead) {
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
