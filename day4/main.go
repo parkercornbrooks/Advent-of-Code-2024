@@ -18,8 +18,7 @@ func main() {
 		part1(day, *file)
 	case 2:
 		fmt.Printf("running day %d part %d with file %s\n", day, *part, *file)
-		fmt.Println("not yet implemented")
-		//part2(day, *file)
+		part2(day, *file)
 	default:
 		fmt.Printf("part %d does not exist\n", *part)
 	}
