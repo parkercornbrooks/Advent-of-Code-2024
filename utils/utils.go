@@ -8,9 +8,7 @@ import (
 
 type parseLine func(string)
 
-type endRead func()
-
-func ReadInput(filename string, linefn parseLine, endfn endRead) {
+func ReadInput(filename string, linefn parseLine) {
 	file, err := os.Open(filename)
 	if err != nil {
 		panic(err)
@@ -28,7 +26,6 @@ func ReadInput(filename string, linefn parseLine, endfn endRead) {
 	if err := sc.Err(); err != nil {
 		panic(err)
 	}
-	endfn()
 }
 
 func Abs(v int) int {

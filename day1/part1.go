@@ -23,14 +23,12 @@ func part1(day int, file string) {
 		right = append(right, rVal)
 	}
 
-	endfn := func() {
-		slices.Sort(left)
-		slices.Sort(right)
-		for i := 0; i < len(left); i++ {
-			diff += utils.Abs(left[i] - right[i])
-		}
-		fmt.Printf("Total: %d\n", diff)
-	}
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
+	slices.Sort(left)
+	slices.Sort(right)
+	for i := 0; i < len(left); i++ {
+		diff += utils.Abs(left[i] - right[i])
+	}
+	fmt.Printf("Total: %d\n", diff)
 }

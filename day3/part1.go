@@ -23,9 +23,7 @@ func part1(day int, file string) {
 		}
 	}
 
-	endfn := func() {
-		fmt.Printf("Total: %d\n", total)
-	}
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
+	fmt.Printf("Total: %d\n", total)
 }

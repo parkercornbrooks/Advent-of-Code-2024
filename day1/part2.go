@@ -21,14 +21,12 @@ func part2(day int, file string) {
 		right[rVal] = right[rVal] + 1
 	}
 
-	endfn := func() {
-		sim := 0
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-		for _, num := range left {
-			sim += num * right[num]
-		}
-		fmt.Printf("Total: %d\n", sim)
+	sim := 0
+
+	for _, num := range left {
+		sim += num * right[num]
 	}
-
-	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
+	fmt.Printf("Total: %d\n", sim)
 }

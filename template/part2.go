@@ -12,9 +12,6 @@ func part2(day int, file string) {
 
 	}
 
-	endfn := func() {
+	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-	}
-
-	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn, endfn)
 }

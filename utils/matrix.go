@@ -101,7 +101,7 @@ func ReadIntoMatrix(filepath string) Matrix {
 		rowNum++
 	}
 
-	ReadInput(filepath, linefn, func() {})
+	ReadInput(filepath, linefn)
 
 	return matrix
 }
