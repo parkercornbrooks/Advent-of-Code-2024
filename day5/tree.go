@@ -52,3 +52,13 @@ func (t Tree) orderIsValid(order []string) bool {
 	}
 	return true
 }
+
+func (t Tree) arrange(order []string) []string {
+	slices.SortFunc(order, func(a, b string) int {
+		if t.aIsBeforeB(a, b) {
+			return -1
+		}
+		return 1
+	})
+	return order
+}
