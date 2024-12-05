@@ -1,4 +1,4 @@
-package main
+package day4
 
 import (
 	"fmt"
@@ -8,6 +8,12 @@ import (
 
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
+
+type day struct{}
+
+func New() day {
+	return day{}
+}
 
 type Grid struct {
 	m utils.Matrix
@@ -55,7 +61,7 @@ func (g Grid) checkDirection(step utils.Step, rest string) int {
 	return 1
 }
 
-func part1(day int, file string) {
+func (d day) Part1(day int, file string) {
 	grid := Grid{
 		m: utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file)),
 	}

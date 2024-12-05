@@ -1,4 +1,4 @@
-package main
+package day4
 
 import (
 	"fmt"
@@ -47,7 +47,7 @@ func (g Grid) checkForX(start utils.Cell) int {
 	return 1
 }
 
-func part2(day int, file string) {
+func (d day) Part2(day int, file string) {
 	grid := Grid{
 		m: utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file)),
 	}

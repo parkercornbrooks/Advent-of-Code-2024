@@ -67,10 +67,10 @@ var testCases = []struct {
 func TestAll(t *testing.T) {
 	for _, tc := range testCases {
 		name := fmt.Sprintf("Day %d Part %d", tc.day, tc.part)
-		daycmd := fmt.Sprintf("./day%d", tc.day)
+		daycmd := fmt.Sprintf("%d", tc.day)
 		partcmd := fmt.Sprintf("%d", tc.part)
 		t.Run(name, func(t *testing.T) {
-			cmd := exec.Command("go", "run", daycmd, "-p", partcmd)
+			cmd := exec.Command("go", "run", ".", "-d", daycmd, "-p", partcmd)
 			out, err := cmd.CombinedOutput()
 			if err != nil {
 				t.Fatal(err)

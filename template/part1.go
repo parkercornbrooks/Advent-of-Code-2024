@@ -1,4 +1,4 @@
-package main
+package day
 
 import (
 	"path/filepath"
@@ -7,7 +7,13 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func part1(day int, file string) {
+type day struct{}
+
+func New() day {
+	return day{}
+}
+
+func (d day) Part1(day int, file string) {
 	linefn := func(line string) {
 
 	}

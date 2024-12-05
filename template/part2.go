@@ -1,4 +1,4 @@
-package main
+package day
 
 import (
 	"path/filepath"
@@ -7,7 +7,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func part2(day int, file string) {
+func (d day) Part2(day int, file string) {
 	linefn := func(line string) {
 
 	}

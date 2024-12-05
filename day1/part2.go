@@ -1,4 +1,4 @@
-package main
+package day1
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func part2(day int, file string) {
+func (d day) Part2(day int, file string) {
 	left := make([]int, 1000)
 	right := make(map[int]int)
 

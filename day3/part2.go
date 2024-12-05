@@ -1,4 +1,4 @@
-package main
+package day3
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 
 var r2 = regexp.MustCompile(`(mul\((\d{1,3}),(\d{1,3})\))|(do\(\))|(don't\(\))`)
 
-func part2(day int, file string) {
+func (d day) Part2(day int, file string) {
 	total := 0
 	use := true
 

@@ -1,4 +1,4 @@
-package main
+package day1
 
 import (
 	"fmt"
@@ -10,7 +10,13 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func part1(day int, file string) {
+type day struct{}
+
+func New() day {
+	return day{}
+}
+
+func (d day) Part1(day int, file string) {
 	left := make([]int, 1000)
 	right := make([]int, 1000)
 	diff := 0

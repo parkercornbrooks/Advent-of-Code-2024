@@ -1,4 +1,4 @@
-package main
+package day3
 
 import (
 	"fmt"
@@ -9,9 +9,15 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
+type day struct{}
+
+func New() day {
+	return day{}
+}
+
 var r = regexp.MustCompile(`mul\((\d{1,3}),(\d{1,3})\)`)
 
-func part1(day int, file string) {
+func (d day) Part1(day int, file string) {
 	total := 0
 
 	linefn := func(line string) {

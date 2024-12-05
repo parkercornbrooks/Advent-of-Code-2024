@@ -4,22 +4,29 @@ Attempting in Go this year
 
 ## How to Run
 
-Run the code using `go run ./dayX` where `X` is the day number
+Run the code using `go run .`
+
+Specify the day using the `-d` flag (default is 1)
 
 ```sh
-$ go run ./day2
+$ go run . -d 4
 ```
 
 Specify a part using the `-p` flag and a 1 or 2 (default is 1)
 
 ```sh
-$ go run ./day2 -p 2
+$ go run . -p 2
 ```
 
 Specify the input file using the `-f` flag (default is "input.txt")
 
 ```sh
-$ go run ./day2 -f "example.txt"
+$ go run . -f "example.txt"
+```
+
+Example - Run Day 5 Part 2 with the example input
+```sh
+$ go run . -d 5 -p 2 -f "example.txt"
 ```
 
 ## Notes

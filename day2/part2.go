@@ -1,4 +1,4 @@
-package main
+package day2
 
 import (
 	"fmt"
@@ -22,7 +22,7 @@ func (r report) isSafeWithDampener() bool {
 	return false
 }
 
-func part2(day int, file string) {
+func (d day) Part2(day int, file string) {
 	safeReports := 0
 
 	linefn := func(line string) {

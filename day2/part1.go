@@ -1,4 +1,4 @@
-package main
+package day2
 
 import (
 	"fmt"
@@ -8,6 +8,12 @@ import (
 
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
+
+type day struct{}
+
+func New() day {
+	return day{}
+}
 
 type report []int
 
@@ -39,7 +45,7 @@ func createReport(raw []string) report {
 	return report
 }
 
-func part1(day int, file string) {
+func (d day) Part1(day int, file string) {
 	safeReports := 0
 
 	linefn := func(line string) {

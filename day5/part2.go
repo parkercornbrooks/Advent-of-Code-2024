@@ -1,10 +1,10 @@
-package main
+package day5
 
 import (
 	"fmt"
 )
 
-func part2(day int, file string) {
+func (d day) Part2(day int, file string) {
 	rules, updates := loadData(day, file)
 
 	total := 0
