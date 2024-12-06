@@ -9,6 +9,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/day3"
 	"github.com/parkercornbrooks/advent-of-code-2024/day4"
 	"github.com/parkercornbrooks/advent-of-code-2024/day5"
+	"github.com/parkercornbrooks/advent-of-code-2024/day6"
 )
 
 type dayPackage interface {
@@ -22,6 +23,7 @@ var packageMap = map[int]dayPackage{
 	3: day3.New(),
 	4: day4.New(),
 	5: day5.New(),
+	6: day6.New(),
 }
 
 func main() {
