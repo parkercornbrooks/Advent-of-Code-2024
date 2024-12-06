@@ -1,14 +1,27 @@
 package utils
 
+import "fmt"
+
 type Cell struct {
 	R, C int
 	Val  string
+}
+
+func (c Cell) String() string {
+	return fmt.Sprintf("%d-%d", c.R, c.C)
 }
 
 type Matrix [][]Cell
 
 type Dir struct {
 	R, C int
+}
+
+var DirMap = map[string]Dir{
+	"up":    {-1, 0},
+	"down":  {1, 0},
+	"left":  {0, -1},
+	"right": {0, 1},
 }
 
 var directions = []Dir{

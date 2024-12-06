@@ -62,6 +62,11 @@ var testCases = []struct {
 		part: 2,
 		want: "Total: 4971",
 	},
+	{
+		day:  6,
+		part: 1,
+		want: "4890",
+	},
 }
 
 func TestAll(t *testing.T) {
