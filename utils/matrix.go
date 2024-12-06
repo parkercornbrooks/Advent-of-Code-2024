@@ -100,6 +100,26 @@ func (m Matrix) GetNext(c Cell, d Dir) (Cell, bool) {
 	return m.GetCell(newR, newC)
 }
 
+func (m Matrix) Copy() Matrix {
+	dupe := make([][]Cell, len(m))
+	for i := range m {
+		dupe[i] = make([]Cell, len(m[i]))
+		copy(dupe[i], m[i])
+	}
+	return dupe
+}
+
+func (m Matrix) String() string {
+	s := ""
+	for _, row := range m {
+		for _, cell := range row {
+			s += cell.Val
+		}
+		s += "\n"
+	}
+	return s
+}
+
 func ReadIntoMatrix(filepath string) Matrix {
 	matrix := make(Matrix, 0)
 	rowNum := 0
