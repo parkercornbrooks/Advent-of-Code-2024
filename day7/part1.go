@@ -53,7 +53,12 @@ func (e Equation) eval(ops []string) int {
 	return res
 }
 
+var opsCache = make(map[int][][]string)
+
 func generateOpGroups(count int, ops []string) [][]string {
+	if cached, ok := opsCache[count]; ok {
+		return cached
+	}
 	prev := [][]string{}
 	for _, op := range ops {
 		prev = append(prev, []string{op})
@@ -71,6 +76,7 @@ func generateOpGroups(count int, ops []string) [][]string {
 		prev = next
 		next = [][]string{}
 	}
+	opsCache[count] = prev
 	return prev
 }
 
