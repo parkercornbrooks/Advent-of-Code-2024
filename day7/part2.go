@@ -1,17 +1,15 @@
 package day7
 
-import (
-	"path/filepath"
-	"strconv"
-
-	"github.com/parkercornbrooks/advent-of-code-2024/utils"
-)
+import "fmt"
 
 func (d day) Part2(day int, file string) {
-	linefn := func(line string) {
+	eqs := readInput(day, file)
+	total := 0
+	ops := []string{Star, Plus, Conc}
 
+	for _, e := range eqs {
+		total += e.isValid(ops)
 	}
 
-	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
-
+	fmt.Println(total)
 }

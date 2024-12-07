@@ -17,6 +17,7 @@ func New() day {
 
 const Star = "*"
 const Plus = "+"
+const Conc = "|"
 
 type Equation struct {
 	Result int
@@ -24,12 +25,12 @@ type Equation struct {
 }
 
 // isValid returns the equation result if the equation can be made true
-func (e Equation) isValid() int {
-	opGroups := generateOpGroups(len(e.Input) - 1)
+func (e Equation) isValid(ops []string) int {
+	opGroups := generateOpGroups(len(e.Input)-1, ops)
 	for _, g := range opGroups {
 		res := e.eval(g)
 		if res == e.Result {
-			return e.Result
+			return res
 		}
 	}
 	return 0
@@ -43,6 +44,8 @@ func (e Equation) eval(ops []string) int {
 			res = res * e.Input[i+1]
 		case Plus:
 			res = res + e.Input[i+1]
+		case Conc:
+			res = utils.MustAtoi(strconv.Itoa(res) + strconv.Itoa(e.Input[i+1]))
 		default:
 			panic("unknown operator")
 		}
@@ -50,15 +53,15 @@ func (e Equation) eval(ops []string) int {
 	return res
 }
 
-func generateOpGroups(count int) [][]string {
-	prev := [][]string{
-		{Star},
-		{Plus},
+func generateOpGroups(count int, ops []string) [][]string {
+	prev := [][]string{}
+	for _, op := range ops {
+		prev = append(prev, []string{op})
 	}
 	next := [][]string{}
 	for i := 1; i < count; i++ {
 		for _, p := range prev {
-			for _, op := range []string{Star, Plus} {
+			for _, op := range ops {
 				newS := make([]string, len(p)+1)
 				copy(newS, p)
 				newS[len(p)] = op
@@ -74,9 +77,10 @@ func generateOpGroups(count int) [][]string {
 func (d day) Part1(day int, file string) {
 	eqs := readInput(day, file)
 	total := 0
+	ops := []string{Star, Plus}
 
 	for _, e := range eqs {
-		total += e.isValid()
+		total += e.isValid(ops)
 	}
 
 	fmt.Println(total)
