@@ -93,7 +93,7 @@ func (m Matrix) SurroundingCells(c Cell) []Step {
 }
 
 func (m Matrix) GetCell(r, c int) (Cell, bool) {
-	if r < 0 || r == m.Height() || c < 0 || c == m.Width() {
+	if r < 0 || r >= m.Height() || c < 0 || c >= m.Width() {
 		return Cell{}, false
 	}
 	return m[r][c], true
