@@ -13,11 +13,10 @@ func New() day {
 	return day{}
 }
 
-func (d day) Part1(day int, file string) {
-	linefn := func(line string) {
-
-	}
+func (d day) Part1(day int, file string) int {
+	linefn := func(line string) {}
 
 	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
+	return 0
 }

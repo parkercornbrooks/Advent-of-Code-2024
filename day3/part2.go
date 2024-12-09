@@ -1,7 +1,6 @@
 package day3
 
 import (
-	"fmt"
 	"path/filepath"
 	"regexp"
 	"strconv"
@@ -11,7 +10,7 @@ import (
 
 var r2 = regexp.MustCompile(`(mul\((\d{1,3}),(\d{1,3})\))|(do\(\))|(don't\(\))`)
 
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	total := 0
 	use := true
 
@@ -35,5 +34,5 @@ func (d day) Part2(day int, file string) {
 
 	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-	fmt.Printf("Total: %d\n", total)
+	return total
 }

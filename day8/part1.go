@@ -1,7 +1,6 @@
 package day8
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 
@@ -25,7 +24,7 @@ func reflect(m utils.Matrix, a, b utils.Cell) (utils.Cell, bool) {
 	return m[newR][newC], true
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	grid := utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file))
 
 	antennae := buildAntennaMap(grid)
@@ -46,7 +45,7 @@ func (d day) Part1(day int, file string) {
 		}
 	}
 
-	fmt.Println(len(antinodes))
+	return len(antinodes)
 
 }
 

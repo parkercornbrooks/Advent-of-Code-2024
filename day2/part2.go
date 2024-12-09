@@ -1,7 +1,6 @@
 package day2
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -22,7 +21,7 @@ func (r report) isSafeWithDampener() bool {
 	return false
 }
 
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	safeReports := 0
 
 	linefn := func(line string) {
@@ -35,7 +34,7 @@ func (d day) Part2(day int, file string) {
 
 	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-	fmt.Printf("Total safe reports: %d\n", safeReports)
+	return safeReports
 }
 
 func newReportWithoutIndex(r report, index int) report {

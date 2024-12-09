@@ -1,7 +1,6 @@
 package day5
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -15,7 +14,7 @@ func New() day {
 	return day{}
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	rules, updates := loadData(day, file)
 
 	total := 0
@@ -25,7 +24,7 @@ func (d day) Part1(day int, file string) {
 			total += middlePage(update)
 		}
 	}
-	fmt.Println("Total:", total)
+	return total
 }
 
 func loadData(day int, file string) (Tree, [][]string) {

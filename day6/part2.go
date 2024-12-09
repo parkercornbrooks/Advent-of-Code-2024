@@ -8,7 +8,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	grid := utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file))
 
 	loc := grid.FindAll("^")[0] // my guard is a caret so skip check for ><V
@@ -34,7 +34,7 @@ func (d day) Part2(day int, file string) {
 		}
 	}
 
-	fmt.Println(loops)
+	return loops
 }
 
 // scenario returns 1 if a loop is found, else 0

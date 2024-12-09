@@ -53,10 +53,15 @@ func (e Equation) eval(ops []string) int {
 	return res
 }
 
-var opsCache = make(map[int][][]string)
+var opsCache = make(map[string][][]string)
+
+func makeOpsTag(numOps, count int) string {
+	return fmt.Sprintf("%d-%d", numOps, count)
+}
 
 func generateOpGroups(count int, ops []string) [][]string {
-	if cached, ok := opsCache[count]; ok {
+	tag := makeOpsTag(len(ops), count)
+	if cached, ok := opsCache[tag]; ok {
 		return cached
 	}
 	prev := [][]string{}
@@ -76,11 +81,11 @@ func generateOpGroups(count int, ops []string) [][]string {
 		prev = next
 		next = [][]string{}
 	}
-	opsCache[count] = prev
+	opsCache[tag] = prev
 	return prev
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	eqs := readInput(day, file)
 	total := 0
 	ops := []string{Star, Plus}
@@ -89,7 +94,7 @@ func (d day) Part1(day int, file string) {
 		total += e.isValid(ops)
 	}
 
-	fmt.Println(total)
+	return total
 }
 
 func readInput(day int, file string) []Equation {

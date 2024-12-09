@@ -15,8 +15,8 @@ import (
 )
 
 type dayPackage interface {
-	Part1(day int, file string)
-	Part2(day int, file string)
+	Part1(day int, file string) int
+	Part2(day int, file string) int
 }
 
 var packageMap = map[int]dayPackage{
@@ -36,20 +36,28 @@ func main() {
 	file := flag.String("f", "input.txt", "which input file to run")
 	flag.Parse()
 
-	d, ok := packageMap[*day]
+	res := run(*day, *part, *file)
+	fmt.Println(res)
+}
+
+func run(day, part int, file string) int {
+	d, ok := packageMap[day]
 	if !ok {
-		fmt.Printf("day %d does not exist\n", *part)
-		return
+		fmt.Printf("day %d does not exist\n", part)
+		return 0
 	}
 
-	switch *part {
+	res := 0
+
+	switch part {
 	case 1:
-		fmt.Printf("running day %d part %d with file %s\n", *day, *part, *file)
-		d.Part1(*day, *file)
+		fmt.Printf("running day %d part %d with file %s\n", day, part, file)
+		res = d.Part1(day, file)
 	case 2:
-		fmt.Printf("running day %d part %d with file %s\n", *day, *part, *file)
-		d.Part2(*day, *file)
+		fmt.Printf("running day %d part %d with file %s\n", day, part, file)
+		res = d.Part2(day, file)
 	default:
-		fmt.Printf("part %d does not exist\n", *part)
+		fmt.Printf("part %d does not exist\n", part)
 	}
+	return res
 }

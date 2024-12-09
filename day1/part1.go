@@ -1,7 +1,6 @@
 package day1
 
 import (
-	"fmt"
 	"path/filepath"
 	"slices"
 	"strconv"
@@ -16,7 +15,7 @@ func New() day {
 	return day{}
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	left := make([]int, 1000)
 	right := make([]int, 1000)
 	diff := 0
@@ -36,5 +35,5 @@ func (d day) Part1(day int, file string) {
 	for i := 0; i < len(left); i++ {
 		diff += utils.Abs(left[i] - right[i])
 	}
-	fmt.Printf("Total: %d\n", diff)
+	return diff
 }

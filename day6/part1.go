@@ -1,7 +1,6 @@
 package day6
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 
@@ -14,7 +13,7 @@ func New() day {
 	return day{}
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	grid := utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file))
 
 	loc := grid.FindAll("^")[0] // my guard is a caret so skip check for ><V
@@ -38,7 +37,7 @@ func (d day) Part1(day int, file string) {
 		}
 	}
 
-	fmt.Println(len(visited))
+	return len(visited)
 }
 
 func turnRight(dir utils.Dir) utils.Dir {

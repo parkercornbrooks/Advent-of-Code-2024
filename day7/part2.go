@@ -1,8 +1,6 @@
 package day7
 
-import "fmt"
-
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	eqs := readInput(day, file)
 	total := 0
 	ops := []string{Star, Plus, Conc}
@@ -11,5 +9,5 @@ func (d day) Part2(day int, file string) {
 		total += e.isValid(ops)
 	}
 
-	fmt.Println(total)
+	return total
 }

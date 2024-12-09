@@ -1,7 +1,6 @@
 package day4
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -61,11 +60,11 @@ func (g Grid) checkDirection(step utils.Step, rest string) int {
 	return 1
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	grid := Grid{
 		m: utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file)),
 	}
 
 	xmasFound := grid.scanFor("XMAS")
-	fmt.Println(xmasFound)
+	return xmasFound
 }

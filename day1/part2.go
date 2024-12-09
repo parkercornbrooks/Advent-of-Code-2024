@@ -1,7 +1,6 @@
 package day1
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -9,7 +8,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/utils"
 )
 
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	left := make([]int, 1000)
 	right := make(map[int]int)
 
@@ -28,5 +27,5 @@ func (d day) Part2(day int, file string) {
 	for _, num := range left {
 		sim += num * right[num]
 	}
-	fmt.Printf("Total: %d\n", sim)
+	return sim
 }

@@ -1,7 +1,6 @@
 package day4
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 
@@ -47,11 +46,11 @@ func (g Grid) checkForX(start utils.Cell) int {
 	return 1
 }
 
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	grid := Grid{
 		m: utils.ReadIntoMatrix(filepath.Join("day"+strconv.Itoa(day), file)),
 	}
 
 	xmasFound := grid.scanForMas()
-	fmt.Println(xmasFound)
+	return xmasFound
 }

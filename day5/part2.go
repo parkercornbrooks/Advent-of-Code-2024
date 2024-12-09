@@ -1,10 +1,6 @@
 package day5
 
-import (
-	"fmt"
-)
-
-func (d day) Part2(day int, file string) {
+func (d day) Part2(day int, file string) int {
 	rules, updates := loadData(day, file)
 
 	total := 0
@@ -15,5 +11,5 @@ func (d day) Part2(day int, file string) {
 			total += middlePage(newOrder)
 		}
 	}
-	fmt.Println("Total:", total)
+	return total
 }

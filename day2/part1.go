@@ -1,7 +1,6 @@
 package day2
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -45,7 +44,7 @@ func createReport(raw []string) report {
 	return report
 }
 
-func (d day) Part1(day int, file string) {
+func (d day) Part1(day int, file string) int {
 	safeReports := 0
 
 	linefn := func(line string) {
@@ -58,5 +57,5 @@ func (d day) Part1(day int, file string) {
 
 	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
 
-	fmt.Printf("Total safe reports: %d\n", safeReports)
+	return safeReports
 }
