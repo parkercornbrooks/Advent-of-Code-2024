@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/parkercornbrooks/advent-of-code-2024/day1"
+	"github.com/parkercornbrooks/advent-of-code-2024/day10"
 	"github.com/parkercornbrooks/advent-of-code-2024/day2"
 	"github.com/parkercornbrooks/advent-of-code-2024/day3"
 	"github.com/parkercornbrooks/advent-of-code-2024/day4"
@@ -21,15 +22,16 @@ type dayPackage interface {
 }
 
 var packageMap = map[int]dayPackage{
-	1: day1.New(),
-	2: day2.New(),
-	3: day3.New(),
-	4: day4.New(),
-	5: day5.New(),
-	6: day6.New(),
-	7: day7.New(),
-	8: day8.New(),
-	9: day9.New(),
+	1:  day1.New(),
+	2:  day2.New(),
+	3:  day3.New(),
+	4:  day4.New(),
+	5:  day5.New(),
+	6:  day6.New(),
+	7:  day7.New(),
+	8:  day8.New(),
+	9:  day9.New(),
+	10: day10.New(),
 }
 
 func main() {
