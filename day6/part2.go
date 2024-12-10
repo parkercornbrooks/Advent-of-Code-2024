@@ -15,7 +15,7 @@ func (d day) Part2(day int, file string) int {
 	visited := map[string]bool{
 		loc.String(): true,
 	}
-	dir := utils.DirMap["up"]
+	dir := utils.DirMap["u"]
 	loops := 0
 
 	for {

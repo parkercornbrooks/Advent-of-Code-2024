@@ -20,7 +20,7 @@ func (d day) Part1(day int, file string) int {
 	visited := map[string]bool{
 		loc.String(): true,
 	}
-	dir := utils.DirMap["up"]
+	dir := utils.DirMap["u"]
 
 	for {
 		nextCell, exists := grid.GetNext(loc, dir)
@@ -42,14 +42,14 @@ func (d day) Part1(day int, file string) int {
 
 func turnRight(dir utils.Dir) utils.Dir {
 	switch dir {
-	case utils.DirMap["up"]:
-		return utils.DirMap["right"]
-	case utils.DirMap["right"]:
-		return utils.DirMap["down"]
-	case utils.DirMap["down"]:
-		return utils.DirMap["left"]
-	case utils.DirMap["left"]:
-		return utils.DirMap["up"]
+	case utils.DirMap["u"]:
+		return utils.DirMap["r"]
+	case utils.DirMap["r"]:
+		return utils.DirMap["d"]
+	case utils.DirMap["d"]:
+		return utils.DirMap["l"]
+	case utils.DirMap["l"]:
+		return utils.DirMap["u"]
 	default: // should not hit this case
 		return dir
 	}

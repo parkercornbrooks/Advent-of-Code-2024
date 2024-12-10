@@ -18,21 +18,14 @@ type Dir struct {
 }
 
 var DirMap = map[string]Dir{
-	"up":    {-1, 0},
-	"down":  {1, 0},
-	"left":  {0, -1},
-	"right": {0, 1},
-}
-
-var directions = []Dir{
-	{-1, -1},
-	{-1, 0},
-	{-1, 1},
-	{0, -1},
-	{0, 1},
-	{1, -1},
-	{1, 0},
-	{1, 1},
+	"u-l": {-1, -1},
+	"u":   {-1, 0},
+	"u-r": {-1, 1},
+	"l":   {0, -1},
+	"r":   {0, 1},
+	"d-l": {1, -1},
+	"d":   {1, 0},
+	"d-r": {1, 1},
 }
 
 type Step struct {
@@ -78,9 +71,24 @@ func (m Matrix) FindAll(s string) []Cell {
 	return found
 }
 
-func (m Matrix) SurroundingCells(c Cell) []Step {
+func (m Matrix) SurroundingCells(c Cell, which string) []Step {
+	dirs := []Dir{}
+	switch which {
+	case "diagonal":
+		dirs = []Dir{DirMap["u-l"], DirMap["u-r"], DirMap["d-l"], DirMap["d-r"]}
+	case "cardinal":
+		dirs = []Dir{DirMap["u"], DirMap["r"], DirMap["d"], DirMap["l"]}
+	default:
+		for _, v := range DirMap {
+			dirs = append(dirs, v)
+		}
+	}
+	return m.getNearby(c, dirs)
+}
+
+func (m Matrix) getNearby(c Cell, dirs []Dir) []Step {
 	steps := []Step{}
-	for _, dir := range directions {
+	for _, dir := range dirs {
 		cell, exists := m.GetNext(c, dir)
 		if exists {
 			steps = append(steps, Step{

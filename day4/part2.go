@@ -17,15 +17,9 @@ func (g Grid) scanForMas() int {
 }
 
 func (g Grid) checkForX(start utils.Cell) int {
-	surrounding := g.m.SurroundingCells(start)
-	if len(surrounding) != 8 {
+	diags := g.m.SurroundingCells(start, "diagonal")
+	if len(diags) != 4 {
 		return 0 // cell is on edge
-	}
-	diags := []utils.Step{
-		surrounding[0], // top left
-		surrounding[2], // top right
-		surrounding[5], // bottom left
-		surrounding[7], // bottom right
 	}
 	sCount := 0
 	mCount := 0
