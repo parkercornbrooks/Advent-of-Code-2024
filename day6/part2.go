@@ -18,6 +18,9 @@ func (d day) Part2(day int, file string) int {
 	dir := utils.DirMap["u"]
 	loops := 0
 
+	results := make(chan int)
+	sem := make(chan struct{}, 8)
+
 	for {
 		nextCell, exists := grid.GetNext(loc, dir)
 		if !exists {
@@ -28,10 +31,19 @@ func (d day) Part2(day int, file string) int {
 		} else {
 			if _, ok := visited[nextCell.String()]; !ok {
 				visited[nextCell.String()] = true
-				loops += scenario(grid, loc, nextCell, dir)
+				go func(m utils.Matrix, loc, next utils.Cell, dir utils.Dir) {
+					sem <- struct{}{}
+					results <- scenario(m, loc, next, dir)
+					<-sem
+				}(grid, loc, nextCell, dir)
 			}
 			loc = nextCell
 		}
+	}
+
+	for i := 0; i < len(visited)-1; i++ {
+		res := <-results
+		loops += res
 	}
 
 	return loops
