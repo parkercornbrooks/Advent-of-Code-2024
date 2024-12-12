@@ -1,7 +1,6 @@
 package day12
 
 import (
-	"fmt"
 	"path/filepath"
 	"strconv"
 
@@ -18,48 +17,55 @@ func (d day) Part2(day int, file string) int {
 		if _, ok := visited[c]; ok {
 			return
 		}
-		region, _, corners := flood(m, c)
+		region, _, corners := flood(m, c, true)
 		for cell := range region {
 			visited[cell] = struct{}{}
 		}
 		price += corners * len(region)
-		fmt.Printf("Region %s: %d * %d = %d\n", c.Val, len(region), corners, corners*len(region))
 	}
 	m.ScanFunc(scanFunc)
 
 	return price
 }
 
-func countCorners(m utils.Matrix, c utils.Cell, surr []utils.Step) int {
-	diags := m.SurroundingCells(c, "diagonal")
+func countCorners(m utils.Matrix, c utils.Cell) int {
 	neighbors := 0
 	corners := 0
 	priorFound := false
 	initialMatch := false
 	checked := 0
-	for i := 0; i < len(surr); i++ {
-		if c.Val == surr[i].Cell.Val {
-			neighbors++
-			if priorFound {
-				checked++
-				if diags[i-1].Cell.Val != c.Val {
-					corners++
+	priorDiagNoMatch := false
+
+	surr := m.SurroundingCells(c, "all", true)
+	for i, step := range surr {
+		if i%2 == 0 { // step is ordinal
+			if step.Cell.Val == c.Val {
+				if i == 0 {
+					initialMatch = true
 				}
+				if priorFound {
+					checked = 1
+					if priorDiagNoMatch {
+						corners++
+					}
+				}
+				priorFound = true
+				neighbors++
+			} else {
+				priorFound = false
 			}
-			if i == 0 {
-				initialMatch = true
-			}
-			priorFound = true
-		} else {
-			priorFound = false
+		} else { // step is diagonal
+			priorDiagNoMatch = step.Cell.Val != c.Val
 		}
 	}
-	if len(surr) == 4 && priorFound && initialMatch {
-		checked++
-		if diags[3].Cell.Val != c.Val {
+
+	if len(surr) == 8 && initialMatch && priorFound {
+		checked = 1
+		if priorDiagNoMatch {
 			corners++
 		}
 	}
+
 	switch neighbors {
 	case 0:
 		corners += 4
@@ -68,8 +74,6 @@ func countCorners(m utils.Matrix, c utils.Cell, surr []utils.Step) int {
 	case 2:
 		corners += checked
 	}
-	if c.Val == "M" {
-		fmt.Printf("M at %s has %d corners\n", c, corners)
-	}
+
 	return corners
 }

@@ -41,7 +41,7 @@ func (d day) Part1(day int, file string) int {
 
 func next(m utils.Matrix, c utils.Cell) []utils.Cell {
 	nextInc := []utils.Cell{}
-	next := m.SurroundingCells(c, "cardinal")
+	next := m.SurroundingCells(c, "cardinal", false)
 	for _, n := range next {
 		if utils.MustAtoi(n.Cell.Val)-utils.MustAtoi(c.Val) == 1 {
 			nextInc = append(nextInc, n.Cell)

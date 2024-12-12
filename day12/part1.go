@@ -23,7 +23,7 @@ func (d day) Part1(day int, file string) int {
 		if _, ok := visited[c]; ok {
 			return
 		}
-		region, edges, _ := flood(m, c)
+		region, edges, _ := flood(m, c, false)
 		for cell := range region {
 			visited[cell] = struct{}{}
 		}
@@ -33,7 +33,7 @@ func (d day) Part1(day int, file string) int {
 
 	return price
 }
-func flood(m utils.Matrix, c utils.Cell) (map[utils.Cell]struct{}, int, int) {
+func flood(m utils.Matrix, c utils.Cell, countC bool) (map[utils.Cell]struct{}, int, int) {
 	visited := map[utils.Cell]struct{}{c: {}}
 	latest := map[utils.Cell]struct{}{c: {}}
 	edges := 0
@@ -43,7 +43,7 @@ func flood(m utils.Matrix, c utils.Cell) (map[utils.Cell]struct{}, int, int) {
 		newVisits := map[utils.Cell]struct{}{}
 		for cell := range latest {
 			edges += 4
-			surr := m.SurroundingCells(cell, "cardinal")
+			surr := m.SurroundingCells(cell, "cardinal", false)
 			for _, s := range surr {
 				if s.Cell.Val == c.Val {
 					edges -= 1
@@ -53,7 +53,9 @@ func flood(m utils.Matrix, c utils.Cell) (map[utils.Cell]struct{}, int, int) {
 					}
 				}
 			}
-			corners += countCorners(m, cell, surr)
+			if countC {
+				corners += countCorners(m, cell)
+			}
 		}
 		if len(newVisits) == 0 {
 			break

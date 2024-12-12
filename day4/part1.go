@@ -33,7 +33,7 @@ func (g Grid) scanFor(s string) int {
 
 func (g Grid) checkSurrounding(start utils.Cell, rest string) int {
 	found := 0
-	surroundingCells := g.m.SurroundingCells(start, "all")
+	surroundingCells := g.m.SurroundingCells(start, "all", false)
 	for _, step := range surroundingCells {
 		match := g.checkDirection(step, rest)
 		found += match

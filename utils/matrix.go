@@ -2,6 +2,8 @@ package utils
 
 import "fmt"
 
+const EMPTY_CELL_VAL = "empty"
+
 type Cell struct {
 	R, C int
 	Val  string
@@ -71,7 +73,7 @@ func (m Matrix) FindAll(s string) []Cell {
 	return found
 }
 
-func (m Matrix) SurroundingCells(c Cell, which string) []Step {
+func (m Matrix) SurroundingCells(c Cell, which string, fill bool) []Step {
 	dirs := []Dir{}
 	switch which {
 	case "diagonal":
@@ -79,14 +81,13 @@ func (m Matrix) SurroundingCells(c Cell, which string) []Step {
 	case "cardinal":
 		dirs = []Dir{DirMap["u"], DirMap["r"], DirMap["d"], DirMap["l"]}
 	default:
-		for _, v := range DirMap {
-			dirs = append(dirs, v)
-		}
+		dirs = []Dir{DirMap["u"], DirMap["u-r"], DirMap["r"], DirMap["d-r"],
+			DirMap["d"], DirMap["d-l"], DirMap["l"], DirMap["u-l"]}
 	}
-	return m.getNearby(c, dirs)
+	return m.getNearby(c, dirs, fill)
 }
 
-func (m Matrix) getNearby(c Cell, dirs []Dir) []Step {
+func (m Matrix) getNearby(c Cell, dirs []Dir, fill bool) []Step {
 	steps := []Step{}
 	for _, dir := range dirs {
 		cell, exists := m.GetNext(c, dir)
@@ -94,6 +95,13 @@ func (m Matrix) getNearby(c Cell, dirs []Dir) []Step {
 			steps = append(steps, Step{
 				Dir:  dir,
 				Cell: cell,
+			})
+		} else if fill {
+			steps = append(steps, Step{
+				Dir: dir,
+				Cell: Cell{
+					Val: EMPTY_CELL_VAL,
+				},
 			})
 		}
 	}

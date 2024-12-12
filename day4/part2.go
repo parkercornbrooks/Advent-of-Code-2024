@@ -17,7 +17,7 @@ func (g Grid) scanForMas() int {
 }
 
 func (g Grid) checkForX(start utils.Cell) int {
-	diags := g.m.SurroundingCells(start, "diagonal")
+	diags := g.m.SurroundingCells(start, "diagonal", false)
 	if len(diags) != 4 {
 		return 0 // cell is on edge
 	}
