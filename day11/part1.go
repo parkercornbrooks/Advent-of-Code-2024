@@ -17,17 +17,7 @@ func New() day {
 func (d day) Part1(day int, file string) int {
 	stones := load(day, file)
 
-	for i := 0; i < 25; i++ {
-		//fmt.Println("Round", i)
-		//fmt.Println(stones)
-		newStones := make([]string, 0)
-		for _, stone := range stones {
-			newStones = append(newStones, transform(stone)...)
-		}
-		stones = newStones
-	}
-
-	return len(stones)
+	return run(stones, 25)
 }
 
 func load(day int, file string) []string {
@@ -38,19 +28,7 @@ func load(day int, file string) []string {
 	return input
 }
 
-func transform(stone string) []string {
-	if stone == "0" {
-		return []string{"1"}
-	} else if len(stone)%2 == 0 {
-		return getHalfStones(stone)
-	} else {
-		num := utils.MustAtoi(stone)
-		val := num * 2024
-		return []string{strconv.Itoa(val)}
-	}
-}
-
-func getHalfStones(stone string) []string {
+func getHalfStones(stone string) (string, string) {
 	split := len(stone) / 2
 	s1 := stone[:split]
 	num1 := utils.MustAtoi(s1)
@@ -58,5 +36,5 @@ func getHalfStones(stone string) []string {
 	s2 := stone[split:]
 	num2 := utils.MustAtoi(s2)
 	v2 := strconv.Itoa(num2)
-	return []string{v1, v2}
+	return v1, v2
 }
