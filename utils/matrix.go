@@ -75,7 +75,7 @@ func (m Matrix) SurroundingCells(c Cell, which string) []Step {
 	dirs := []Dir{}
 	switch which {
 	case "diagonal":
-		dirs = []Dir{DirMap["u-l"], DirMap["u-r"], DirMap["d-l"], DirMap["d-r"]}
+		dirs = []Dir{DirMap["u-r"], DirMap["d-r"], DirMap["d-l"], DirMap["u-l"]}
 	case "cardinal":
 		dirs = []Dir{DirMap["u"], DirMap["r"], DirMap["d"], DirMap["l"]}
 	default:

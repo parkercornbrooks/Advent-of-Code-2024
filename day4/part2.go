@@ -34,7 +34,7 @@ func (g Grid) checkForX(start utils.Cell) int {
 	if sCount != 2 || mCount != 2 {
 		return 0 // need 2 of each
 	}
-	if diags[0].Cell.Val == diags[3].Cell.Val {
+	if diags[0].Cell.Val == diags[2].Cell.Val {
 		return 0 // M cannot be across from M, same with S
 	}
 	return 1
