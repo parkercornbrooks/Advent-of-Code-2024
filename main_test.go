@@ -130,6 +130,11 @@ var testCases = []struct {
 		part: 2,
 		want: 923480,
 	},
+	{
+		day:  13,
+		part: 1,
+		want: 36870,
+	},
 }
 
 func TestAll(t *testing.T) {
