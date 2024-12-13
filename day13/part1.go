@@ -1,7 +1,6 @@
 package day13
 
 import (
-	"math"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -22,13 +21,13 @@ type Machine struct {
 	ax, ay, bx, by, px, py int
 }
 
-func (m Machine) play() (float64, float64) {
-	div := float64(m.by) / float64(m.bx)
-	num := (float64(m.py) - (float64(m.px) * div))
-	denom := (float64(m.ay) - (float64(m.ax) * div))
-	a := num / denom
-	b := (float64(m.px) - a*float64(m.ax)) / float64(m.bx)
-	return a, b
+func (m Machine) play() (int, int) {
+	a := ((m.by * m.px) - (m.bx * m.py)) / (m.by*m.ax - m.bx*m.ay)
+	b := (m.px - a*m.ax) / m.bx
+	if (a*m.ay)+(b*m.by) == m.py && (a*m.ax)+(b*m.bx) == m.px {
+		return a, b
+	}
+	return 0, 0
 }
 
 func (d day) Part1(day int, file string) int {
@@ -37,31 +36,9 @@ func (d day) Part1(day int, file string) int {
 
 	for _, m := range machines {
 		a, b := m.play()
-		if aInt, bInt, ok := convBoth(a, b); ok {
-			total += aInt*A_SCORE + bInt*B_SCORE
-		}
+		total += a*A_SCORE + b*B_SCORE
 	}
 	return total
-}
-
-func convBoth(a, b float64) (int, int, bool) {
-	aInt, aOk := intConv(a)
-	bInt, bOk := intConv(b)
-	if aOk && bOk {
-		return aInt, bInt, true
-	}
-	return 0, 0, false
-}
-
-func intConv(a float64) (int, bool) {
-	corr := 1e-8
-	aWhole, aFrac := math.Modf(a)
-	if aFrac < corr {
-		return int(aWhole), true
-	} else if aFrac > 1-corr {
-		return int(aWhole + 1), true // round up
-	}
-	return 0, false
 }
 
 func load(day int, file string) []Machine {

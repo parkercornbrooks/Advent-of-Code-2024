@@ -1,16 +1,17 @@
 package day13
 
-import (
-	"path/filepath"
-	"strconv"
-
-	"github.com/parkercornbrooks/advent-of-code-2024/utils"
-)
+const POS_CORR = 10_000_000_000_000
 
 func (d day) Part2(day int, file string) int {
-	linefn := func(line string) {}
+	machines := load(day, file)
+	total := 0
 
-	utils.ReadInput(filepath.Join("day"+strconv.Itoa(day), file), linefn)
+	for _, m := range machines {
+		m.px += POS_CORR
+		m.py += POS_CORR
+		a, b := m.play()
 
-	return 0
+		total += a*A_SCORE + b*B_SCORE
+	}
+	return total
 }
