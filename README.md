@@ -49,3 +49,10 @@ To use it, run either:
 $ go test
 $ go test -v
 ```
+
+Since my specific input files are not available publicly, the `-example` flag can be applied to run the test suite against the example text files in the same manner:
+
+```sh
+$ go test -example
+$ go test -v -example
+```
