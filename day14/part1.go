@@ -18,17 +18,19 @@ type Robot struct {
 	x, y, vx, vy int
 }
 
-func (r Robot) posAfterSec(s int) (int, int) {
+func (r *Robot) posAfterSec(s int) (int, int) {
 	x := r.x + r.vx*s
 	y := r.y + r.vy*s
 	return x, y
 }
 
 type Area struct {
-	w, h int
+	w, h          int
+	bots          []*Robot
+	rowMaxReached bool
 }
 
-func (a Area) reposition(x, y int) (newX, newY int) {
+func (a *Area) reposition(x, y int) (newX, newY int) {
 	if x >= 0 {
 		newX = x % a.w
 	} else {
@@ -43,7 +45,7 @@ func (a Area) reposition(x, y int) (newX, newY int) {
 	return newX, newY
 }
 
-func (a Area) quadrant(x, y int) (int, bool) {
+func (a *Area) quadrant(x, y int) (int, bool) {
 	if y == a.h/2 || x == a.w/2 {
 		return 0, false
 	}
@@ -63,7 +65,7 @@ func (d day) Part1(day int, file string) int {
 		w, h = 11, 7
 	}
 
-	a := Area{w, h}
+	a := &Area{w, h, nil, false}
 
 	robots := load(day, file)
 
@@ -87,15 +89,15 @@ func (d day) Part1(day int, file string) int {
 	return total
 }
 
-func load(day int, file string) []Robot {
-	robots := []Robot{}
+func load(day int, file string) []*Robot {
+	robots := []*Robot{}
 	linefn := func(line string) {
 		fields := strings.Fields(line)
 		pStrip := strings.TrimPrefix(fields[0], "p=")
 		point := strings.Split(pStrip, ",")
 		vStrip := strings.TrimPrefix(fields[1], "v=")
 		vel := strings.Split(vStrip, ",")
-		robot := Robot{
+		robot := &Robot{
 			x:  utils.MustAtoi(point[0]),
 			y:  utils.MustAtoi(point[1]),
 			vx: utils.MustAtoi(vel[0]),
