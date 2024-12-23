@@ -11,6 +11,7 @@ import (
 	"github.com/parkercornbrooks/advent-of-code-2024/day13"
 	"github.com/parkercornbrooks/advent-of-code-2024/day14"
 	"github.com/parkercornbrooks/advent-of-code-2024/day15"
+	"github.com/parkercornbrooks/advent-of-code-2024/day16"
 	"github.com/parkercornbrooks/advent-of-code-2024/day2"
 	"github.com/parkercornbrooks/advent-of-code-2024/day3"
 	"github.com/parkercornbrooks/advent-of-code-2024/day4"
@@ -42,6 +43,7 @@ var packageMap = map[int]dayPackage{
 	13: day13.New(),
 	14: day14.New(),
 	15: day15.New(),
+	16: day16.New(),
 }
 
 func main() {

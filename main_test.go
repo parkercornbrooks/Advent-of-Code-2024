@@ -191,6 +191,18 @@ var testCases = []struct {
 		example: 9021,
 		input:   1468005,
 	},
+	{
+		day:     16,
+		part:    1,
+		example: 0,
+		input:   0,
+	},
+	{
+		day:     16,
+		part:    2,
+		example: 0,
+		input:   0,
+	},
 }
 
 func TestAll(t *testing.T) {
