@@ -39,34 +39,18 @@ func (w *warehouse) step(arrow string) {
 		if current.Val == EDGE {
 			break
 		}
-		cells = append(cells, current)
 		if current.Val == EMPTY {
-			for i, c := range cells {
-				switch i {
-				case 0:
-					w.grid[c.R][c.C].Val = EMPTY
-				case 1:
-					w.grid[c.R][c.C].Val = BOT
-					w.bot = c
-				default:
-					w.grid[c.R][c.C].Val = BOX
-				}
-			}
+			w.move(cells, dir)
 			break
 		}
+		cells = append(cells, current)
 	}
 }
 
-func (d day) Part1(day int, file string) int {
-	m, ins := load(day, file)
-	w := warehouse{grid: m, bot: m.FindAll(BOT)[0]}
-	for i := range ins {
-		w.step(ins[i : i+1])
-	}
-
+func (w *warehouse) gpsSum() int {
 	total := 0
 	w.grid.ScanFunc(func(c utils.Cell) {
-		if c.Val == BOX {
+		if c.Val == BOX || c.Val == BOXL {
 			coord := c.R*100 + c.C
 			total += coord
 		}
@@ -75,7 +59,17 @@ func (d day) Part1(day int, file string) int {
 	return total
 }
 
-func load(day int, file string) (utils.Matrix, string) {
+func (d day) Part1(day int, file string) int {
+	m, ins := load(day, file, false)
+	w := warehouse{grid: m, bot: m.FindAll(BOT)[0]}
+	for i := range ins {
+		w.step(ins[i : i+1])
+	}
+
+	return w.gpsSum()
+}
+
+func load(day int, file string, expanded bool) (utils.Matrix, string) {
 	isGrid := true
 	m := make(utils.Matrix, 0)
 	rowNum := 0
@@ -87,8 +81,15 @@ func load(day int, file string) (utils.Matrix, string) {
 		} else if isGrid {
 			row := []utils.Cell{}
 			for i, char := range line {
-				cell := utils.Cell{R: rowNum, C: i, Val: string(char)}
-				row = append(row, cell)
+				if expanded {
+					newCells := expandedCellMap[string(char)]
+					cell1 := utils.Cell{R: rowNum, C: i * 2, Val: newCells[0]}
+					cell2 := utils.Cell{R: rowNum, C: i*2 + 1, Val: newCells[1]}
+					row = append(row, cell1, cell2)
+				} else {
+					cell := utils.Cell{R: rowNum, C: i, Val: string(char)}
+					row = append(row, cell)
+				}
 			}
 			m = append(m, row)
 			rowNum++
