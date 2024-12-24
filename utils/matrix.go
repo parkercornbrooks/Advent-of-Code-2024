@@ -19,6 +19,10 @@ type Dir struct {
 	R, C int
 }
 
+func (d Dir) Opposite() Dir {
+	return Dir{R: -d.R, C: -d.C}
+}
+
 var DirMap = map[string]Dir{
 	"u-l": {-1, -1},
 	"u":   {-1, 0},
@@ -29,6 +33,11 @@ var DirMap = map[string]Dir{
 	"d":   {1, 0},
 	"d-r": {1, 1},
 }
+
+var Cardinals = []Dir{DirMap["u"], DirMap["r"], DirMap["d"], DirMap["l"]}
+var Diagonals = []Dir{DirMap["u-r"], DirMap["d-r"], DirMap["d-l"], DirMap["u-l"]}
+var AllDirs = []Dir{DirMap["u"], DirMap["u-r"], DirMap["r"], DirMap["d-r"],
+	DirMap["d"], DirMap["d-l"], DirMap["l"], DirMap["u-l"]}
 
 type Step struct {
 	Dir  Dir
@@ -74,15 +83,14 @@ func (m Matrix) FindAll(s string) []Cell {
 }
 
 func (m Matrix) SurroundingCells(c Cell, which string, fill bool) []Step {
-	dirs := []Dir{}
+	var dirs []Dir
 	switch which {
 	case "diagonal":
-		dirs = []Dir{DirMap["u-r"], DirMap["d-r"], DirMap["d-l"], DirMap["u-l"]}
+		dirs = Diagonals
 	case "cardinal":
-		dirs = []Dir{DirMap["u"], DirMap["r"], DirMap["d"], DirMap["l"]}
+		dirs = Cardinals
 	default:
-		dirs = []Dir{DirMap["u"], DirMap["u-r"], DirMap["r"], DirMap["d-r"],
-			DirMap["d"], DirMap["d-l"], DirMap["l"], DirMap["u-l"]}
+		dirs = AllDirs
 	}
 	return m.getNearby(c, dirs, fill)
 }

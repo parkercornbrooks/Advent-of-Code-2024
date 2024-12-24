@@ -194,8 +194,8 @@ var testCases = []struct {
 	{
 		day:     16,
 		part:    1,
-		example: 0,
-		input:   0,
+		example: 7036,
+		input:   108504,
 	},
 	{
 		day:     16,
